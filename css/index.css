@@ -6,8 +6,10 @@
 }
 .custom-two{
     margin: 10px;
-    width: 30%;
-    height: 40vh;
+    width: 33%;
+    min-height: 5vh;
+    max-height: 40vh;
+    padding: 0px 10px 10px 10px;
     overflow: auto;
 }
 .parties-div{
