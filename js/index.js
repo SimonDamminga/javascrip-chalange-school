@@ -12,7 +12,7 @@ function clearPage(){
 
 function createHomePage(){        
     clearPage();
-    
+
     var elem = element("div", [
         element("h4", text("Klik op start om te beginnen")),
         element("p", text("Test uw politieke voorkeur aan de hand van 30 stellingen")),
@@ -40,28 +40,11 @@ function createQuestionPage(index){
 }
 
 function next(value, question){
-    if(index <= subjects.length){
-        if(results.length != 0){
-            results.forEach(item => {
-                if(item.question == question+1){
-                    item.result = value;
-                    console.log(results);
-                }else{
-                    if(value != undefined){
-                        results.push({question: question+1, result: value});
-                        console.log(results);
-                    }                
-                }
-            });         
-        }else{
-            if(value != undefined){
-                results.push({question: question+1, result: value});
-                console.log(results);
-            }  
-        }    
-        index++;    
-        createQuestionPage(index);        
-    }
+    var q = question + 1
+    results.push({question: q, value: value})
+
+    index++;    
+    createQuestionPage(index);   
 }
 function back(){
     index--;
