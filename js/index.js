@@ -10,6 +10,23 @@ function clearPage(){
     page.innerHTML = "";  
 }
 
+function calculateResult(results){
+    var Ueens = 0;
+    var Unone = 0;
+    var Uoneens = 0;
+    results.forEach(item => {
+        if(item.value == "eens"){
+            Ueens++;
+        }else if(item.value == "geen van beide"){
+            Unone++;
+        }else if(item.value == "oneens"){
+            Uoneens++;
+        }
+    });
+
+    console.log(Ueens + " " + Unone + " " + Uoneens);
+}
+
 function createHomePage(){        
     clearPage();
 
@@ -25,6 +42,7 @@ function createHomePage(){
 
 function createReviewPage(results){
     clearPage();
+    calculateResult(results);
 
     var elem = element("div", [
         element("button", text("Terug"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "back()")]),
@@ -32,9 +50,17 @@ function createReviewPage(results){
     ], [attribute("class", "w3-card-4 custom-card")]);
 
     results.forEach(result => {
+        if(result.value == "unanswered"){
+            var goToQuestionButton = element("button", [text(result.question)], [attribute("class", "w3-button w3-red w3-hover-blue"), attribute("onclick", "createQuestionPage(" + (result.question - 1) + ")")])
+        }else{
+            var goToQuestionButton = element("button", [text(result.question)], [attribute("class", "w3-button w3-green w3-hover-blue"), attribute("onclick", "createQuestionPage(" + (result.question - 1) + ")")])
+        }
+        
+        elem.appendChild(goToQuestionButton);
+    });
+
+    results.forEach(result => {
        var resultsText = element("p", text("vraag: " + result.question + ", resultaat: " + result.value), [attribute("class", "w3-container")]);
-       var goToQuestionButton = element("button", [text("ga naar vraag: " + result.question)], [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "createQuestionPage(" + (result.question - 1) + ")")])
-       elem.appendChild(goToQuestionButton);
        elem.appendChild(resultsText);
     });
     
@@ -42,17 +68,18 @@ function createReviewPage(results){
     page.appendChild(elem);
 }
 
-function createQuestionPage(index){
+function createQuestionPage(indexn){
+    index = indexn;
     clearPage();
 
     var elem = element("div", [
         element("button", text("Terug"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "back()")]),
-        element("h2", text(subjects[index].title), [attribute("class", "w3-container")]),
-        element("p", text(subjects[index].statement), [attribute("class", "w3-container")]),
-        element("button", text("Eens"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('eens', "+ index +")")]),
-        element("button", text("Geen van beide"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('geen van beide', "+ index +")")]),
-        element("button", text("Oneens"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('oneens', "+ index +")")]),
-        element("button", text("Overslaan"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('unanswered', "+ index +")")]),
+        element("h2", text(subjects[indexn].title), [attribute("class", "w3-container")]),
+        element("p", text(subjects[indexn].statement), [attribute("class", "w3-container")]),
+        element("button", text("Eens"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('eens', "+ indexn +")")]),
+        element("button", text("Geen van beide"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('geen van beide', "+ indexn +")")]),
+        element("button", text("Oneens"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('oneens', "+ indexn +")")]),
+        element("button", text("Overslaan"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('unanswered', "+ indexn +")")]),
 
 
     ], [attribute("class", "w3-card-4 custom-card")])
@@ -61,7 +88,7 @@ function createQuestionPage(index){
     var ambivalent = element("div", [element("h1", text("Geen van beide"))], [attribute("class", "w3-card-4 custom-two")]);
     var contra = element("div", [element("h1", text("Tegen"))], [attribute("class", "w3-card-4 custom-two")]);
 
-    subjects[index].parties.forEach(parie => {
+    subjects[indexn].parties.forEach(parie => {
         if(parie.position == "pro"){
             pro.appendChild(element("div", [
                 element("h4", text(parie.name)),
