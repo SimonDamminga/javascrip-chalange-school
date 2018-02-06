@@ -40,11 +40,22 @@ function createQuestionPage(index){
 }
 
 function next(value, question){
-    var q = question + 1
-    results.push({question: q, value: value})
-
-    index++;    
-    createQuestionPage(index);   
+    var q;
+    if(question == undefined){q = 0;}
+    else{q = question + 1}
+    
+    if(value != undefined){
+       results.push({question: q, value: value}) 
+    }
+    
+    if(q < subjects.length){
+        index++;
+        createQuestionPage(index); 
+    }else{
+        createReviewPage(results);
+    }
+          
+     
 }
 function back(){
     index--;
