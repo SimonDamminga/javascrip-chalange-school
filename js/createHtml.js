@@ -39,11 +39,26 @@ function calculateResult(results){
         return parseFloat(b.p) - parseFloat(a.p);
     });
 
-    console.log(res);
+    return res;
 }
 
 function createResultPage(){
-    calculateResult(results);
+    var res = calculateResult(results);
+    console.log(res)
+
+    clearPage();
+
+    var elem = element("div", [
+        element("h4", text("resultaten")),
+    ], [attribute("class", "w3-card-4 custom-card")]);
+
+    res.forEach((result, index) => {
+        if(result.p > 0){
+            elem.appendChild(element("p", text((index+1) + ": " + result.n)))
+        }
+    });
+
+    page.appendChild(elem);
 }
 
 function createHomePage(){        
