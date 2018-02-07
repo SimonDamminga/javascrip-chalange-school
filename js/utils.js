@@ -1,3 +1,10 @@
+var page = document.getElementById("main");
+var index = -1;
+var chosenParties = [];
+var bigParties = false;
+var secuParties = false;
+results = [];
+
 function element(name, el, attributes) {
     var parent = document.createElement(name);
     if (attributes) {

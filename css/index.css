@@ -12,6 +12,9 @@
     padding: 0px 10px 10px 10px;
     overflow: auto;
 }
+.custom{
+    margin: 10px;
+}
 .parties-div{
     display: flex;
 }
@@ -19,4 +22,8 @@ body{
     background-image: url("../tweede-kamer.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
+}
+.chooseSecu{
+    display: inline;
+    margin-right: 10px;
 }
