@@ -1,18 +1,49 @@
 function calculateResult(results){
-    var Ueens = 0;
-    var Unone = 0;
-    var Uoneens = 0;
-    results.forEach(item => {
-        if(item.value == "eens"){
-            Ueens++;
-        }else if(item.value == "geen van beide"){
-            Unone++;
-        }else if(item.value == "oneens"){
-            Uoneens++;
-        }
+    results.forEach((item, index) => {
+        subjects[index].parties.forEach(par => {
+            if(par.position == item.value){
+                points.forEach(point => {
+                    if(point.n == par.name){
+                        point.p++;
+                    }
+                });
+            }
+        });
     });
 
-    console.log(Ueens + " " + Unone + " " + Uoneens);
+    if(secuParties == true){
+        parties.forEach(partie => {
+            if(partie.secular == false){
+                points.forEach((point, index) => {
+                    if(point.n == partie.name){
+                        points.splice(index, 1);
+                    }
+                });
+            }
+        });
+    }
+
+    if(bigParties == true){
+        parties.forEach(partie => {
+            if(partie.size < 10){
+                points.forEach((point, index) => {
+                    if(point.n == partie.name){
+                        points.splice(index, 1);
+                    }
+                });
+            }
+        });
+    }
+
+    var res = points.sort(function(a, b){
+        return parseFloat(b.p) - parseFloat(a.p);
+    });
+
+    console.log(res);
+}
+
+function createResultPage(){
+    calculateResult(results);
 }
 
 function createHomePage(){        
@@ -32,11 +63,11 @@ function createHomePage(){
 
 function createReviewPage(results){
     clearPage();
-    calculateResult(results);
+
 
     var elem = element("div", [
         element("button", text("Terug"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "back()")]),
-        element("h4", text("Bekijk je resultaten"), [attribute("class", "w3-container")]),        
+        element("h4", text("Deze vragen zijn wel/niet beantwoord"), [attribute("class", "w3-container")]),        
     ], [attribute("class", "w3-card-4 custom-card")]);
 
     results.forEach(result => {
@@ -77,7 +108,7 @@ function createReviewPage(results){
 
     elem.appendChild(element("div", [
         checkboxes,
-        element("button", [text("Bekijk resultaten")], [attribute("class", "w3-button w3-hover-blue")])
+        element("button", [text("Bekijk resultaten")], [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", `createResultPage()`)])
     ]))
 
     page.appendChild(elem);
@@ -91,9 +122,9 @@ function createQuestionPage(indexn){
         element("button", text("Terug"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "back()")]),
         element("h2", text(subjects[indexn].title), [attribute("class", "w3-container")]),
         element("p", text(subjects[indexn].statement), [attribute("class", "w3-container")]),
-        element("button", text("Eens"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('eens', "+ indexn +")")]),
-        element("button", text("Geen van beide"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('geen van beide', "+ indexn +")")]),
-        element("button", text("Oneens"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('oneens', "+ indexn +")")]),
+        element("button", text("Eens"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('pro', "+ indexn +")")]),
+        element("button", text("Geen van beide"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('ambivalent', "+ indexn +")")]),
+        element("button", text("Oneens"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('contra', "+ indexn +")")]),
         element("button", text("Overslaan"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('unanswered', "+ indexn +")")]),
 
 

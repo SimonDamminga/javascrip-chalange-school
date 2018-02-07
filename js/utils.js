@@ -3,6 +3,8 @@ var index = -1;
 var chosenParties = [];
 var bigParties = false;
 var secuParties = false;
+var allParties = parties;
+var points = [];
 results = [];
 
 function element(name, el, attributes) {
@@ -28,9 +30,4 @@ function attribute(name, value) {
 }
 function text(text) {
     return document.createTextNode(text);
-}
-
-
-function onInit(){
-    createHomePage();
 }

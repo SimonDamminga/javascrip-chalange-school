@@ -1,4 +1,9 @@
+
+
 function onInit(){
+    parties.forEach(partie => {
+        points.push({n: partie.name, p: 0});
+    });
     createHomePage();
 }
 
@@ -13,9 +18,9 @@ function next(value, question){
     else{q = question + 1}
     
     if(value != undefined){
-        results[question] = {question: q, value: value};   
+        results[question] = {question: q, value: value};      
     }
-    
+
     if(q < subjects.length){
         index++;
         createQuestionPage(index); 
@@ -37,68 +42,10 @@ function back(){
 
 function toggleSecuParties(){
     secuParties = !secuParties;
-    console.log(chosenParties);
-    if(secuParties == true){
-        if(chosenParties.length == 0){
-            parties.forEach(partie => {
-                if(partie.secular == true){
-                    chosenParties.push(partie);
-                }
-            });
-        }else{
-            chosenParties.forEach((partie, index)=> {
-                if(partie.secular == false){
-                    chosenParties.splice(index, 1);
-                }
-            });
-        }
-    }else{
-        chosenParties = allParties;
-        if(bigParties == true){
-            chosenParties = allParties;
-            chosenParties.forEach(() => {
-                chosenParties.forEach((partie, index) => {
-                    if(partie.size < 10){
-                        chosenParties.splice(index, 1);
-                    }
-                });
-            });
-        }
-    }
-    console.log(chosenParties);
 }
 
 function toggleBigParties(){
     bigParties = !bigParties;
-    console.log(chosenParties);
-    if(bigParties == true){
-        if(chosenParties.length == 0){
-            parties.forEach((partie) => {
-                if(partie.size > 10){
-                    chosenParties.push(partie);
-                }
-            });
-            console.log(parties);
-        }else{
-            chosenParties.forEach(() => {
-                chosenParties.forEach((partie, index) => {
-                    if(partie.size < 10){
-                        chosenParties.splice(index, 1);
-                    }
-                });
-            });
-        }
-    }else{
-        chosenParties = parties;
-        console.log(chosenParties);
-        if(secuParties == true){
-            chosenParties.forEach((partie, index)=> {
-                if(partie.secular == false){
-                    chosenParties.splice(index, 1);
-                }
-            });
-        }
-    }
 }
 
 onInit();
