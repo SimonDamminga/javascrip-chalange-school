@@ -18,9 +18,9 @@ function next(value, question){
     else{q = question + 1}
     
     if(value != undefined){
-        results[question] = {question: q, value: value};      
+        results[question] = {question: q, value: value, moreValue: moreWeigth};      
     }
-
+    console.log(results);
     if(q < subjects.length){
         index++;
         createQuestionPage(index); 
@@ -28,6 +28,8 @@ function next(value, question){
         index++;
         createReviewPage(results);
     }
+
+    moreWeigth = false;
 }
 
 function back(){
@@ -46,6 +48,11 @@ function toggleSecuParties(){
 
 function toggleBigParties(){
     bigParties = !bigParties;
+}
+
+function toggleMoreWeigth(){
+    moreWeigth = !moreWeigth;
+    console.log(moreWeigth);
 }
 
 onInit();

@@ -1,14 +1,28 @@
 function calculateResult(results){
+    console.log(results)
     results.forEach((item, index) => {
-        subjects[index].parties.forEach(par => {
-            if(par.position == item.value){
-                points.forEach(point => {
-                    if(point.n == par.name){
-                        point.p++;
-                    }
-                });
-            }
-        });
+        if(item.moreValue == false){
+            subjects[index].parties.forEach(par => {
+                if(par.position == item.value){
+                    points.forEach(point => {
+                        if(point.n == par.name){
+                            point.p++;
+                        }
+                    });
+                }
+            });
+        }else{
+            subjects[index].parties.forEach(par => {
+                if(par.position == item.value){
+                    points.forEach(point => {
+                        if(point.n == par.name){
+                            point.p+=3;
+                        }
+                    });
+                }
+            });           
+        }
+
     });
 
     if(secuParties == true){
@@ -49,7 +63,7 @@ function createResultPage(){
     clearPage();
 
     var elem = element("div", [
-        element("h4", text("resultaten")),
+        element("h4", text("Resultaten")),
     ], [attribute("class", "w3-card-4 custom-card")]);
 
     res.forEach((result, index) => {
@@ -78,7 +92,6 @@ function createHomePage(){
 
 function createReviewPage(results){
     clearPage();
-
 
     var elem = element("div", [
         element("button", text("Terug"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "back()")]),
@@ -137,6 +150,12 @@ function createQuestionPage(indexn){
         element("button", text("Terug"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "back()")]),
         element("h2", text(subjects[indexn].title), [attribute("class", "w3-container")]),
         element("p", text(subjects[indexn].statement), [attribute("class", "w3-container")]),
+        element("br"),
+        element("label", [
+            text("More weigth"),
+            element("input", [], [attribute("type", "checkbox"), attribute("class", "morespace")])
+        ], [attribute("class", "custom"), attribute("onclick", "toggleMoreWeigth()")]),
+        element("br"),
         element("button", text("Eens"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('pro', "+ indexn +")")]),
         element("button", text("Geen van beide"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('ambivalent', "+ indexn +")")]),
         element("button", text("Oneens"), [attribute("class", "w3-button w3-hover-blue"), attribute("onclick", "next('contra', "+ indexn +")")]),

@@ -3,6 +3,7 @@ var index = -1;
 var chosenParties = [];
 var bigParties = false;
 var secuParties = false;
+var moreWeigth = false;
 var allParties = parties;
 var points = [];
 results = [];
