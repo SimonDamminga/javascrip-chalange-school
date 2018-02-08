@@ -1,0 +1,16 @@
+.custom{
+    margin-top: 20px;
+}
+.hidden-on-start{
+    display: none;
+}
+.text{
+    height: 250px;
+}
+#button-back{
+    margin-bottom: 10px;
+}
+ol{
+    margin-top: 10px;
+    font-size: 15px;
+}
