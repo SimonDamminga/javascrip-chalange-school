@@ -9,8 +9,38 @@
 }
 #button-back{
     margin-bottom: 10px;
+    margin-left: -20px;
+    font-size: 45px; 
 }
 ol{
     margin-top: 10px;
     font-size: 15px;
+}
+.parties-list{
+    margin-top: 20px;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+#div{
+    display: flex;
+}
+.partiesOpinion{
+    width: 33%;
+}
+.opinionTitle{
+    border-bottom: 1px solid black;
+    margin: 10px;
 }
