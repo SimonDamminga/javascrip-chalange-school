@@ -21,7 +21,8 @@
 #button-agree,
 #button-none,
 #button-disagree,
-#button-start{
+#button-start,
+#button-result{
     color: white;
 }
 ol{
