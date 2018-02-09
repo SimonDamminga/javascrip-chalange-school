@@ -2,7 +2,7 @@
 
 Opdracht 1 schooljaar 2017-2018
 
-
+## Vragen
 ### Tegen welke problemen liep je aan tijdens het uitvoeren van de opdracht?
 Ik liep tegen weinig problemen aan, alleen een paar syntax dingen ik was namelijk gewend 
 om jQuery te gebruiken voor bepaalde dingen.
