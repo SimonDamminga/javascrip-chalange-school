@@ -39,6 +39,11 @@ function allValuesSame(points) {
     return true;
 }
 
+function onInit(){
+    questionText.innerHTML = `Test uw politieke voorkeur aan de hand van ${subjects.length} stellingen`;   
+}
+onInit();
+
 function buttons(){
     button.style.display = "none";
     agreeBtn.style.display = "inline-block";
@@ -64,7 +69,7 @@ function createStartPage(){
 
 
     title.innerHTML = "Stemwijzer";
-    questionText.innerHTML = "Test uw politieke voorkeur aan de hand van 30 stellingen";
+    questionText.innerHTML = `Test uw politieke voorkeur aan de hand van ${subjects.length} stellingen`;
 }
 
 function createReviewPage(){
