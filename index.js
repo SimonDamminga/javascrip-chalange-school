@@ -97,12 +97,8 @@ function viewResult(){
         return parseFloat(b.p) - parseFloat(a.p);
     });
 
-    console.log(points);
 
-    var allSame = allValuesSame(points);
-    console.log(allSame)
-
-    if(allSame == true){
+    if(allValuesSame(points) == true){
         var nameElem = document.createElement("li");
         document.getElementById("results").style.listStyleType = "none";
         var text = document.createTextNode("Er zijn geen matches");
