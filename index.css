@@ -1,16 +1,28 @@
+*{
+    user-select: none;
+}
+::-webkit-scrollbar { 
+    display: none; 
+}
 .custom{
     margin-top: 20px;
 }
 .hidden-on-start{
     display: none;
 }
-.text{
+#text{
     height: 250px;
 }
 #button-back{
     margin-bottom: 10px;
     margin-left: -20px;
     font-size: 45px; 
+}
+#button-agree,
+#button-none,
+#button-disagree,
+#button-start{
+    color: white;
 }
 ol{
     margin-top: 10px;
@@ -35,7 +47,7 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 #div{
-    display: flex;
+    display: none;
 }
 .partiesOpinion{
     width: 33%;
@@ -43,4 +55,18 @@ tr:nth-child(even) {
 .opinionTitle{
     border-bottom: 1px solid black;
     margin: 10px;
+}
+#explanationText{
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.5);
+}
+details{
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+details p{
+    margin-left: 5%;
+}
+#button-parties{
+    color: rgb(66, 134, 244);
 }

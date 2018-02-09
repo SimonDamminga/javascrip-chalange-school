@@ -13,6 +13,15 @@ function heavyToggleCheck(){
     heavyCount = !heavyCount;
 }
 
+function toggleParties(){
+    toggled = !toggled;
+    if(toggled){
+        document.getElementById("div").style.display = "flex";
+    }else{
+        document.getElementById("div").style.display = "none";
+    }
+}
+
 function nextQ(question, value){
     if(value != undefined) results[question] = {qn: question+1, ans: value, mv: heavyCount};
 
@@ -121,4 +130,5 @@ function viewResult(){
     filterOne.style.display = "none";
     filterTwo.style.display = "none";
     questionText.innerHTML = "Dit zijn je resultaten:";
+    document.getElementById("text").style.height = "auto";
 }

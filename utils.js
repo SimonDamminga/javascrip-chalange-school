@@ -1,6 +1,7 @@
 var curQ = -1;
 var results = [];
 var heavyCount = false;
+var toggled = false;
 var points = [];
 
 var title = document.getElementById("title");
@@ -83,8 +84,10 @@ function setButtons(q){
     disagreeBtn.setAttribute("onclick", `nextQ(${q}, 'contra')`);
     noneBtn.setAttribute("onclick", `nextQ(${q}, 'ambivalent')`);  
     skip.setAttribute("onclick", `nextQ(${q}, "skipped")`);
+    otherThougths.setAttribute("onclick", "toggleParties()");
     heavyChbx.checked = false;
     heavyCount = false;
+    toggled = false;
 
     heavyChbx.setAttribute("onclick", "heavyToggleCheck()");
 }
@@ -92,6 +95,32 @@ function setButtons(q){
 function createPage(index){
     title.innerHTML = subjects[index].title;
     questionText.innerHTML = subjects[index].statement;
+    document.getElementById("eensContainer").innerHTML = "";
+    document.getElementById("noneContainer").innerHTML = "";
+    document.getElementById("oneensContainer").innerHTML = "";
+
+    subjects[index].parties.forEach(partie => {
+        if(partie.position == "pro"){
+            document.getElementById("eensContainer").innerHTML += `
+            <details>
+                <summary>${partie.name}</summary>
+                <p id="explanationText">${partie.explanation}</p>
+            </details>`;
+        }else if(partie.position == "ambivalent"){
+            document.getElementById("noneContainer").innerHTML += `
+            <details>
+                <summary>${partie.name}</summary>
+                <p id="explanationText">${partie.explanation}</p>
+            </details>`;           
+        }else{
+            document.getElementById("oneensContainer").innerHTML += `
+            <details>
+                <summary>${partie.name}</summary>
+                <p id="explanationText">${partie.explanation}</p>
+            </details>`;
+        }
+    });
+    
 }
 
 function hideButtons(){
